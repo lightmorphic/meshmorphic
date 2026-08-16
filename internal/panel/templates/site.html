@@ -1,0 +1,45 @@
+{{define "site.html"}}
+{{template "head" .}}
+
+<h1>Your website files</h1>
+<p class="lede">Upload a .zip file containing your website. It replaces whatever is there now.</p>
+
+{{template "error" .Error}}
+
+{{if and .Count (not .HasIndex)}}
+<div class="notice warn" role="alert">
+  ! There is no <span class="mono">index.html</span> file, so visitors will not see a home page.
+</div>
+{{end}}
+
+<section class="panel">
+  <h2>Upload a website</h2>
+  <form method="post" action="/site/upload" enctype="multipart/form-data">
+    <div class="field">
+      <label for="archive">Website .zip file</label>
+      <input type="file" id="archive" name="archive" accept=".zip,application/zip" required>
+      <p class="hint">On most computers you can right-click a folder and choose “Compress” or “Send to → Compressed folder”. If the zip contains a single folder, its contents are used.</p>
+    </div>
+    <button type="submit" class="primary">Upload and publish</button>
+  </form>
+</section>
+
+<section class="panel">
+  <h2>Published files</h2>
+  {{if .Files}}
+    <div class="filelist">
+      <table>
+        <caption>{{.Count}} file{{if ne .Count 1}}s{{end}} currently being served.</caption>
+        <thead><tr><th scope="col">File</th><th scope="col" class="right">Size</th></tr></thead>
+        <tbody>
+          {{range .Files}}<tr><td class="mono">{{.Name}}</td><td class="right">{{.Size}} bytes</td></tr>{{end}}
+        </tbody>
+      </table>
+    </div>
+  {{else}}
+    <p class="empty">No website has been uploaded yet.</p>
+  {{end}}
+</section>
+
+{{template "foot" .}}
+{{end}}

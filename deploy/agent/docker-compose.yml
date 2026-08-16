@@ -1,0 +1,87 @@
+# MeshMorphic on a home server: two containers that cannot reach each other
+# except on one port, in one direction.
+#
+# The separation is the point. If a website running here is compromised — a
+# vulnerable plugin, a bad dependency, anything — the attacker lands in the
+# site container and finds: no route to the internet, no route to the rest of
+# the house, a filesystem it cannot write to, and exactly one other host
+# reachable on the network. It cannot reach the tunnel, the identity key, or
+# the certificates, because those live in a different container on a different
+# network.
+
+name: meshmorphic
+
+networks:
+  # The only network the website touches. `internal: true` means Docker
+  # installs no route out of it: no internet, no LAN, no host. A process in
+  # there can talk to the agent and to nothing else in the world.
+  site:
+    internal: true
+  # The agent's own network, which does have a route out, for its single
+  # outbound tunnel.
+  mesh:
+
+volumes:
+  # Identity key, certificates and panel state. This is the volume to back up,
+  # though the recovery key on paper is what actually matters.
+  state:
+  # The website's files, written by the panel and read by the site container.
+  site-files:
+
+services:
+  agent:
+    image: ghcr.io/fosscharlie/meshmorphic:latest
+    container_name: meshmorphic-agent
+    restart: unless-stopped
+    networks: [mesh, site]
+    ports:
+      # The settings panel, on the home network only. Nothing else is
+      # published, because nothing else listens.
+      - "8800:8800"
+    volumes:
+      - state:/var/lib/meshmorphic
+      - site-files:/var/lib/meshmorphic/site
+      - ./agent.json:/etc/meshmorphic/agent.json:ro
+    environment:
+      - TZ=${TZ:-Europe/London}
+    security_opt:
+      # Stops any process inside gaining privileges through a setuid binary,
+      # which closes the usual route from "code execution" to "root".
+      - no-new-privileges:true
+    cap_drop: [ALL]
+    read_only: true
+    tmpfs:
+      - /tmp:size=64m,mode=1777
+    healthcheck:
+      test: ["CMD", "/mm-agent", "status"]
+      interval: 60s
+      timeout: 10s
+      start_period: 30s
+      retries: 3
+    logging:
+      driver: json-file
+      options: { max-size: "10m", max-file: "3" }
+
+  site:
+    image: nginx:1.27-alpine
+    container_name: meshmorphic-site
+    restart: unless-stopped
+    # Only the internal network. This single line is what makes a compromised
+    # website unable to reach anything.
+    networks: [site]
+    volumes:
+      - site-files:/usr/share/nginx/html:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    security_opt:
+      - no-new-privileges:true
+    cap_drop: [ALL]
+    # nginx needs to bind a port below 1024 by default; the bundled config
+    # listens on 8080 instead so no capability is required at all.
+    read_only: true
+    tmpfs:
+      - /tmp:size=16m
+      - /var/cache/nginx:size=32m
+      - /var/run:size=8m
+    logging:
+      driver: json-file
+      options: { max-size: "10m", max-file: "3" }

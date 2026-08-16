@@ -1,0 +1,69 @@
+{{define "home.html"}}
+{{template "head" .}}
+
+<h1>Your website</h1>
+<p class="lede">This is the control panel for the website running on this computer.</p>
+
+{{if .Pending}}
+<div class="notice warn" role="alert">
+  ! {{len .Pending}} device{{if ne (len .Pending) 1}}s are{{else}} is{{end}} waiting to be allowed in.
+  <a href="/devices">Review {{if ne (len .Pending) 1}}them{{else}}it{{end}}</a>.
+</div>
+{{end}}
+
+<div class="grid-lead">
+  <section class="panel">
+    <h2>Your address</h2>
+    {{if .MeshHostname}}
+      <a class="address" href="https://{{.MeshHostname}}" rel="noreferrer">https://{{.MeshHostname}}</a>
+      <p class="nickname">Also known as <strong>{{.Nickname}}</strong> — a nickname for this computer, easier to say out loud than the address.</p>
+    {{else}}
+      <p class="empty">Waiting for an address. This normally takes a few seconds after starting.</p>
+    {{end}}
+
+    {{if .Custom}}
+      <h2>Your own domains</h2>
+      <ul class="facts">
+        {{range .Custom}}<li><span class="label">Also serving</span><span class="value"><a href="https://{{.}}" rel="noreferrer">{{.}}</a></span></li>{{end}}
+      </ul>
+    {{end}}
+
+    <h2>Connection</h2>
+    <ul class="facts">
+      <li><span class="label">Status</span>
+        <span class="value">
+          {{if .Online}}<span class="status ok"><span class="mark">✓</span> Online</span>
+          {{else}}<span class="status wait"><span class="mark">!</span> Connecting</span>{{end}}
+        </span></li>
+      <li><span class="label">Connected through</span><span class="value">{{len .Status.ConnectedEdges}} entry point{{if ne (len .Status.ConnectedEdges) 1}}s{{end}}</span></li>
+      <li><span class="label">Connected for</span><span class="value">{{since .Status.Since}}</span></li>
+    </ul>
+    {{if .Status.LastError}}
+      <div class="notice warn" style="margin-top:1rem">! Last problem: {{.Status.LastError}}</div>
+    {{end}}
+  </section>
+
+  <div>
+    <section class="panel">
+      <h2>What is exposed</h2>
+      <div class="exposure">
+        <strong>0 open ports</strong>
+        <p>Nothing on the internet can start a connection to this computer. It only makes connections outward, the same way a web browser does.</p>
+      </div>
+      <ul class="facts" style="margin-top:1rem">
+        <li><span class="label">Encryption ends</span><span class="value">On this computer</span></li>
+        <li><span class="label">Certificate key</span><span class="value">Never leaves here</span></li>
+        <li><span class="label">Version</span><span class="value">{{.Version}}</span></li>
+      </ul>
+    </section>
+
+    <section class="panel">
+      <h2>Identity</h2>
+      <p class="hint">This computer proves who it is with a key that only it holds. The address above is calculated from that key, so nobody else can claim it.</p>
+      <p class="mono" style="font-size:0.8125rem; overflow-wrap:anywhere; color:var(--muted-fg)">{{.PeerID}}</p>
+    </section>
+  </div>
+</div>
+
+{{template "foot" .}}
+{{end}}

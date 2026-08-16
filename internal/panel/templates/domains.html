@@ -1,0 +1,52 @@
+{{define "domains.html"}}
+{{template "head" .}}
+
+<h1>Your own domain</h1>
+<p class="lede">Use a domain you own instead of, or as well as, the automatic address.</p>
+
+{{template "error" .Error}}
+
+<section class="panel">
+  <h2>Add a domain</h2>
+  <form method="post" action="/domains/add">
+    <div class="field">
+      <label for="domain">Domain name</label>
+      <input type="text" id="domain" name="domain" placeholder="example.com" autocomplete="off" spellcheck="false" required>
+      <p class="hint">Type it without <span class="mono">https://</span>. Add <span class="mono">www.example.com</span> separately if you want that to work too.</p>
+    </div>
+    <button type="submit" class="primary">Add domain</button>
+  </form>
+
+  <h2>Before it will work</h2>
+  <p>At the company you bought the domain from, point it at this network. You need a record of type <strong>CNAME</strong> pointing to:</p>
+  <p class="key">{{if .MeshHostname}}{{.MeshHostname}}{{else}}your automatic address, shown on the Overview page{{end}}</p>
+  <p class="hint">Once that is saved, a certificate is requested automatically and the domain starts working. This usually takes a few minutes, but can take longer if your domain company is slow to publish changes.</p>
+</section>
+
+<section class="panel">
+  <h2>Domains in use</h2>
+  {{if .Custom}}
+    <table>
+      <caption>Domains this computer answers for, in addition to its automatic address.</caption>
+      <thead><tr><th scope="col">Domain</th><th scope="col" class="right">Action</th></tr></thead>
+      <tbody>
+        {{range .Custom}}
+        <tr>
+          <td class="mono">{{.}}</td>
+          <td class="right">
+            <form method="post" action="/domains/remove" style="display:inline">
+              <input type="hidden" name="domain" value="{{.}}">
+              <button type="submit" class="danger" aria-label="Stop serving {{.}}">Remove</button>
+            </form>
+          </td>
+        </tr>
+        {{end}}
+      </tbody>
+    </table>
+  {{else}}
+    <p class="empty">No extra domains yet. The automatic address works on its own.</p>
+  {{end}}
+</section>
+
+{{template "foot" .}}
+{{end}}

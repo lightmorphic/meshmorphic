@@ -1,0 +1,70 @@
+[Unit]
+Description=MeshMorphic gateway (introduction service)
+Documentation=https://github.com/FOSSCharlie/meshmorphic
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=meshmorphic-gw
+Group=meshmorphic-gw
+EnvironmentFile=/etc/meshmorphic/gateway.env
+ExecStart=/usr/local/bin/mm-gateway \
+    -listen ${MM_LISTEN} \
+    -domains ${MM_DOMAINS} \
+    -state /var/lib/meshmorphic-gateway \
+    -seeds ${MM_SEEDS} \
+    -status ${MM_STATUS}
+Restart=always
+RestartSec=5s
+
+# A gateway holds one file it cares about — its own identity — and needs
+# nothing else from this machine. The settings below say so explicitly, so that
+# a flaw in the gateway cannot become a flaw in the server.
+
+# Filesystem
+StateDirectory=meshmorphic-gateway
+StateDirectoryMode=0700
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+ReadWritePaths=/var/lib/meshmorphic-gateway
+
+# Privileges. It binds a high port, so it needs no capability at all.
+NoNewPrivileges=true
+CapabilityBoundingSet=
+AmbientCapabilities=
+PrivateUsers=true
+RestrictSUIDSGID=true
+
+# Kernel and devices
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectKernelLogs=true
+ProtectClock=true
+ProtectControlGroups=true
+ProtectProc=invisible
+ProcSubset=pid
+PrivateDevices=true
+DevicePolicy=closed
+
+# Execution
+MemoryDenyWriteExecute=true
+LockPersonality=true
+RestrictRealtime=true
+RestrictNamespaces=true
+SystemCallArchitectures=native
+SystemCallFilter=@system-service
+SystemCallFilter=~@privileged @resources @obsolete @mount @debug @swap
+
+# Networking: UDP for QUIC, plus loopback TCP for the status endpoint.
+RestrictAddressFamilies=AF_INET AF_INET6
+
+# Resources. A gateway's work is tiny; these bounds mean a flood costs the
+# machine a refused connection rather than its memory.
+MemoryMax=256M
+TasksMax=512
+LimitNOFILE=65535
+
+[Install]
+WantedBy=multi-user.target

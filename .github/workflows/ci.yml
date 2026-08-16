@@ -1,0 +1,74 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+          check-latest: true
+
+      - name: Formatting
+        run: make fmt-check
+
+      - name: Vet
+        run: make vet
+
+      - name: Tests
+        # The end-to-end test starts a real gateway, edge and agent and pushes
+        # a request through the whole path, so it needs a little longer than
+        # the default and must not be cached into meaninglessness.
+        run: go test -count=1 -timeout 5m ./...
+
+      - name: Build
+        run: make build
+
+  govulncheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+      # This project asks people to run it on a computer in their house. A
+      # known-vulnerable dependency shipping unnoticed is not acceptable, so
+      # the check is a build gate rather than a report somebody reads later.
+      - name: Check dependencies for known vulnerabilities
+        run: |
+          go install golang.org/x/vuln/cmd/govulncheck@latest
+          govulncheck ./...
+
+  reproducible:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+      # Builds must be reproducible for a published binary to be checkable
+      # against the published source. Asserting it in CI is what stops that
+      # promise quietly rotting.
+      - name: Build twice and compare
+        run: |
+          make build && mv bin build-one
+          make build && mv bin build-two
+          for f in mm-agent mm-gateway mm-edge; do
+            a=$(sha256sum "build-one/$f" | cut -d' ' -f1)
+            b=$(sha256sum "build-two/$f" | cut -d' ' -f1)
+            if [ "$a" != "$b" ]; then
+              echo "::error::$f is not reproducible: $a vs $b"
+              exit 1
+            fi
+            echo "$f  $a"
+          done

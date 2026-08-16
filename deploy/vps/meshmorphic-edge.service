@@ -1,0 +1,74 @@
+[Unit]
+Description=MeshMorphic edge (ingress node)
+Documentation=https://github.com/FOSSCharlie/meshmorphic
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=meshmorphic-edge
+Group=meshmorphic-edge
+EnvironmentFile=/etc/meshmorphic/edge.env
+ExecStart=/usr/local/bin/mm-edge \
+    -tunnel ${MM_TUNNEL} \
+    -https ${MM_HTTPS} \
+    -http ${MM_HTTP} \
+    -domains ${MM_DOMAINS} \
+    -gateways ${MM_GATEWAYS} \
+    -public-addr ${MM_PUBLIC_ADDR} \
+    -state /var/lib/meshmorphic-edge \
+    -status ${MM_STATUS}
+Restart=always
+RestartSec=5s
+
+# The edge is the only component on the traffic path, so it is the one worth
+# confining hardest. It holds no certificate and no certificate key, and these
+# settings make sure a flaw in it cannot reach anything else on the machine.
+
+# Filesystem
+StateDirectory=meshmorphic-edge
+StateDirectoryMode=0700
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+ReadWritePaths=/var/lib/meshmorphic-edge
+
+# Privileges. Ports 80 and 443 are below 1024, so exactly one capability is
+# granted and every other is removed. Running as root instead would be the
+# lazy alternative and is not done here.
+NoNewPrivileges=true
+CapabilityBoundingSet=CAP_NET_BIND_SERVICE
+AmbientCapabilities=CAP_NET_BIND_SERVICE
+RestrictSUIDSGID=true
+
+# Kernel and devices
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectKernelLogs=true
+ProtectClock=true
+ProtectControlGroups=true
+ProtectProc=invisible
+ProcSubset=pid
+PrivateDevices=true
+DevicePolicy=closed
+
+# Execution
+MemoryDenyWriteExecute=true
+LockPersonality=true
+RestrictRealtime=true
+RestrictNamespaces=true
+SystemCallArchitectures=native
+SystemCallFilter=@system-service
+SystemCallFilter=~@privileged @resources @obsolete @mount @debug @swap
+
+RestrictAddressFamilies=AF_INET AF_INET6
+
+# Resources. An edge relays other people's traffic, so it needs more room than
+# a gateway, but still a ceiling: a flood must degrade this service rather than
+# take the machine down.
+MemoryMax=1G
+TasksMax=4096
+LimitNOFILE=262144
+
+[Install]
+WantedBy=multi-user.target

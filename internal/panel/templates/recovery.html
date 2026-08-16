@@ -1,0 +1,35 @@
+{{define "recovery.html"}}
+{{template "head" .}}
+
+<h1>Recovery key</h1>
+<p class="lede">Write this down on paper and keep it somewhere safe.</p>
+
+<div class="notice warn" role="alert">
+  ! Nobody else has a copy of this. Not the people who made MeshMorphic, not anyone running the network. If this computer’s disk fails and you have not written this down, your web address is gone permanently and cannot be recovered by anyone.
+</div>
+
+<section class="panel">
+  <h2>The recovery key for {{.Nickname}}</h2>
+  <p class="key">{{.RecoveryKey}}</p>
+  <p class="hint">Capital letters and dashes do not matter when typing it back in. The characters used avoid anything that can be misread, so there is no letter O, no number 1 and no lowercase L.</p>
+</section>
+
+<section class="panel">
+  <h2>What this is for</h2>
+  <p>Your web address is worked out from a secret key held only on this computer. That is what stops anyone else — including whoever runs the entry points your site connects through — from taking your address or pretending to be your site.</p>
+  <p>The trade is that there is no password reset, because there is no account and no company holding a copy. This key is the backup.</p>
+
+  <h2>Keeping it safe</h2>
+  <p>Anyone who has this key can put their own website at your address. Treat it like a spare front door key:</p>
+  <ul>
+    <li>Write it on paper. A photo in your phone’s camera roll ends up in cloud backups.</li>
+    <li>Keep it away from the computer itself, so one flood or theft does not take both.</li>
+    <li>Do not email it to yourself, and do not type it into a website.</li>
+  </ul>
+
+  <h2>Using it</h2>
+  <p>On a new computer, install MeshMorphic and choose “restore from a recovery key”. Your address, and everything pointing at it, comes back exactly as it was.</p>
+</section>
+
+{{template "foot" .}}
+{{end}}

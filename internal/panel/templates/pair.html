@@ -1,0 +1,22 @@
+{{define "pair.html"}}
+{{template "head" .}}
+
+<h1>Approve this device</h1>
+<p class="lede">This browser has not used the panel before, so it needs to be let in once.</p>
+
+<section class="panel">
+  <h2>Your code</h2>
+  <p class="pincode">{{.Code}}</p>
+  <p>To let this device in, do <strong>one</strong> of these:</p>
+  <ul>
+    <li>Open the panel on a device you have already used, go to <strong>Devices</strong>, and approve this code.</li>
+    <li>Or, on the computer running MeshMorphic, run:<br>
+      <span class="mono">mm-agent devices approve {{.Code}}</span></li>
+  </ul>
+  <p class="hint">This page checks every few seconds and continues on its own once approved. The code stops working after ten minutes.</p>
+</section>
+
+<script src="/assets/pair.js"></script>
+
+{{template "foot" .}}
+{{end}}

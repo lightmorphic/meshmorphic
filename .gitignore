@@ -1,0 +1,12 @@
+/dist/
+/bin/
+*.test
+*.out
+
+# Never commit identities or state
+*.key
+*.identity
+/state/
+/var/
+identity.json
+gateway-state.json

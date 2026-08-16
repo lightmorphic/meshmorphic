@@ -1,0 +1,64 @@
+{{define "devices.html"}}
+{{template "head" .}}
+
+<h1>Devices</h1>
+<p class="lede">Only approved devices can open this panel and change your website.</p>
+
+{{if .Pending}}
+<section class="panel">
+  <h2>Waiting for approval</h2>
+  <p>A device on your network has asked to use this panel. Approve it only if it is yours and you are expecting this.</p>
+  <table>
+    <caption>Devices asking for access. Codes expire after ten minutes.</caption>
+    <thead><tr><th scope="col">Device</th><th scope="col">Code</th><th scope="col" class="right">Action</th></tr></thead>
+    <tbody>
+      {{range .Pending}}
+      <tr>
+        <td>{{.Name}}</td>
+        <td class="mono">{{.Code}}</td>
+        <td class="right">
+          <form method="post" action="/devices/approve" style="display:inline">
+            <input type="hidden" name="code" value="{{.Code}}">
+            <button type="submit" class="primary">Approve</button>
+          </form>
+        </td>
+      </tr>
+      {{end}}
+    </tbody>
+  </table>
+</section>
+{{end}}
+
+<section class="panel">
+  <h2>Approved devices</h2>
+  {{if .Devices}}
+    <table>
+      <caption>Browsers that can open this panel.</caption>
+      <thead><tr><th scope="col">Device</th><th scope="col" class="right">Action</th></tr></thead>
+      <tbody>
+        {{range .Devices}}
+        <tr>
+          <td>{{.Name}}</td>
+          <td class="right">
+            <form method="post" action="/devices/revoke" style="display:inline">
+              <input type="hidden" name="id" value="{{.TokenHash}}">
+              <button type="submit" class="danger" aria-label="Remove access for {{.Name}}">Remove</button>
+            </form>
+          </td>
+        </tr>
+        {{end}}
+      </tbody>
+    </table>
+  {{else}}
+    <p class="empty">No devices approved yet.</p>
+  {{end}}
+</section>
+
+<section class="panel">
+  <h2>Why this exists</h2>
+  <p>This panel is only reachable from your own home network — never from the internet. But a home network also holds guests, smart televisions and anything else connected to the wi-fi. Approving devices means that being on the wi-fi is not, on its own, enough to change your website.</p>
+  <p class="hint">If you lose access to every approved device, run <span class="mono">mm-agent devices reset</span> on the computer itself.</p>
+</section>
+
+{{template "foot" .}}
+{{end}}
