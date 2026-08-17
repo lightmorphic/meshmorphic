@@ -10,3 +10,7 @@
 /var/
 identity.json
 gateway-state.json
+
+# Copied from the repository root at deploy time so the published script and
+# the readable one cannot drift apart.
+/site/install.sh

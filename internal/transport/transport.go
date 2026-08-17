@@ -332,10 +332,13 @@ func (l *Listener) Addr() net.Addr { return l.ln.Addr() }
 func (l *Listener) Close() error { return l.ln.Close() }
 
 // Conn is a MeshMorphic connection to one peer.
-type Conn struct{ qc quic.Connection }
+type Conn struct{ qc *quic.Conn }
 
 // Stream is one multiplexed stream: either the control stream or a data tunnel.
-type Stream = quic.Stream
+//
+// quic-go models a stream as a pointer to a struct rather than an interface,
+// so this alias is a pointer type. Callers treat it as a handle either way.
+type Stream = *quic.Stream
 
 // OpenStream opens a new outbound stream.
 func (c Conn) OpenStream(ctx context.Context) (Stream, error) {

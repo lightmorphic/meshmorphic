@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MeshMorphic — a website on your own computer, with nothing open to the internet</title>
+<meta name="description" content="Host a website at home without opening a single port. Your computer only ever connects outward. No account, no password, and no company you depend on.">
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><circle cx='12' cy='4' r='2.4' fill='%23019587'/><circle cx='4.5' cy='17' r='2.4' fill='%23019587'/><circle cx='19.5' cy='17' r='2.4' fill='%23019587'/><path d='M12 6.4 5.6 15M12 6.4 18.4 15M6.9 17h10.2' stroke='%23019587' stroke-width='1.4' fill='none'/></svg>">
+<meta property="og:title" content="MeshMorphic">
+<meta property="og:description" content="A website on your own computer, with nothing open to the internet.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mm.lightmorphic.co.uk/">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="/">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="12" cy="4" r="2.4" fill="currentColor"/>
+        <circle cx="4.5" cy="17" r="2.4" fill="currentColor"/>
+        <circle cx="19.5" cy="17" r="2.4" fill="currentColor"/>
+        <path d="M12 6.4 5.6 15M12 6.4 18.4 15M6.9 17h10.2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      </svg>
+      MeshMorphic
+    </a>
+    <nav>
+      <a href="#how">How it works</a>
+      <a href="#servers">Run a server</a>
+      <a href="#honest">The catch</a>
+      <a href="https://github.com/lightmorphic/meshmorphic">Source</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<div class="hero">
+  <div class="wrap">
+    <h1>A website on your own computer.</h1>
+    <p class="lede">
+      Self-hosting normally means opening a door in your home network and hoping
+      nobody unpleasant walks through it. MeshMorphic doesn't do that. Your
+      computer opens <strong>no ports at all</strong> — it makes one connection
+      outward, the same as a web browser does, and your site travels back down it.
+    </p>
+
+    <div class="install">
+      <p class="install-label">Install</p>
+      <div class="cmd"><span class="prompt">$</span><code>curl -fsSL https://mm.lightmorphic.co.uk/install.sh | sudo sh</code></div>
+      <p class="note">
+        It asks you nothing — no account, no password, no email address. A minute
+        later it prints your web address and a link to your settings page.
+        <a href="/install.sh">Read the script first</a> if you'd rather; it's the
+        same file that's <a href="https://github.com/lightmorphic/meshmorphic/blob/main/install.sh">in the repository</a>.
+      </p>
+    </div>
+  </div>
+</div>
+
+<section id="how">
+  <div class="wrap">
+    <h2>Why nothing can knock on your door</h2>
+    <p class="section-lede">Four things are doing the work. None of them require you to understand networking.</p>
+
+    <div class="grid">
+      <div class="panel">
+        <h3>No open ports</h3>
+        <p>Nothing on the internet can start a connection to your computer. There's
+        no door to find, so there's nothing to scan, knock on, or break into. This
+        is how the system is built, not a setting that could be wrong.</p>
+      </div>
+      <div class="panel">
+        <h3>Encryption ends at home</h3>
+        <p>The security certificate for your site, and its secret key, are created
+        on your computer and never leave it. The public servers your traffic passes
+        through carry sealed bytes they have no way of opening.</p>
+      </div>
+      <div class="panel">
+        <h3>Your website is boxed in</h3>
+        <p>Your site runs in its own sealed container with no route to the internet,
+        to the rest of your home network, or to your computer. If it's ever
+        compromised, the attacker lands somewhere with nowhere to go.</p>
+      </div>
+      <div class="panel">
+        <h3>Nothing to reset</h3>
+        <p>There's no account, so there's no password to steal, no support desk to
+        trick, and no database of users to leak. Nobody can be talked into handing
+        over your site because nobody has it to hand over.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Your address <em>is</em> your key</h2>
+    <p class="section-lede">
+      This is the idea the whole system rests on, and it's worth thirty seconds.
+    </p>
+
+    <div class="address-demo">
+      <span class="key-part">qz3k9rf7dnxb2wp8sq4t</span>.awwe.uk<br>
+      <span class="key-part">└──────────────────┘</span><br>
+      <span class="caption">calculated from a secret key that only your computer holds</span>
+    </div>
+
+    <div class="grid-2" style="margin-top:1.5rem">
+      <div class="panel">
+        <h3>Nobody assigns it</h3>
+        <p>Your web address is a fingerprint of your computer's own secret key. It
+        isn't handed out by a server, so there's no register to hack, and no
+        authority that could be leaned on to give your address to someone else.</p>
+      </div>
+      <div class="panel tint">
+        <h3>Nobody can take it</h3>
+        <p>To claim your address, somebody would have to find a completely
+        different secret key that produces the same fingerprint. That is not a
+        thing anyone can do — not a company, not a government, not us.</p>
+      </div>
+    </div>
+
+    <p style="margin-top:1.5rem">
+      You can point your own domain at it instead, which most people do. That's a
+      single record at your domain provider, and the certificate is sorted out
+      automatically.
+    </p>
+  </div>
+</section>
+
+<section id="servers">
+  <div class="wrap">
+    <h2>The public servers hold nothing worth stealing</h2>
+    <p class="section-lede">
+      Two kinds of server sit between a visitor and your home. Both are built to be
+      useless to whoever takes them over.
+    </p>
+
+    <div class="table-scroll">
+      <table>
+        <caption>What each kind of public server can and cannot do.</caption>
+        <thead>
+          <tr><th scope="col"></th><th scope="col">Gateway</th><th scope="col">Entry point</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>What it does</td><td>Introductions only</td><td>Passes visitor traffic through</td></tr>
+          <tr><td>What it stores about you</td><td><span class="no">Nothing at all</span></td><td><span class="no">Nothing at all</span></td></tr>
+          <tr><td>Can it read your traffic?</td><td><span class="no">No</span> — none passes through it</td><td><span class="no">No</span> — it holds no key</td></tr>
+          <tr><td>Can it take your address?</td><td><span class="no">No</span></td><td><span class="no">No</span></td></tr>
+          <tr><td>Can it pretend to be your site?</td><td><span class="no">No</span></td><td><span class="no">No</span> — browsers reject it, loudly</td></tr>
+          <tr><td>If it's hacked</td><td>There's nothing to take; your computer uses a different one</td><td>It sees which addresses were visited and from where; it can refuse to pass traffic</td></tr>
+          <tr><td>If it disappears</td><td>Sites already running carry on</td><td>Your computer moves to another one</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid-2" style="margin-top:2rem">
+      <div class="panel">
+        <h3>A gateway genuinely knows nothing</h3>
+        <p>No database. No list of users. No names. No log of who connected. It
+        writes exactly one file to disk — its own key — and answers a single
+        question: <em>who else is out there?</em></p>
+        <p>It can't grant permission for anything, because there is no permission
+        in this system to grant. An address is a calculation anyone can check, not
+        a favour somebody does you.</p>
+      </div>
+      <div class="panel">
+        <h3>Which is why anyone can run one</h3>
+        <p>More gateways means the network is harder to disrupt. Running one costs
+        almost nothing: no storage, negligible traffic, and no responsibility for
+        anybody's data, because none of it passes through.</p>
+        <p><a href="https://github.com/lightmorphic/meshmorphic/tree/main/deploy/vps">Run one on a spare server</a>.
+        The installer hardens the machine first and builds from source, so you can
+        read exactly what you're running.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="honest">
+  <div class="wrap">
+    <h2>The catch, said plainly</h2>
+    <p class="section-lede">
+      Everything above has a cost attached. Here it is, rather than buried in a
+      support article you'd find later.
+    </p>
+
+    <div class="callout warn">
+      <h3>! If you lose your recovery key, your address is gone for good</h3>
+      <p>Nobody else has a copy of it. Not us, not whoever runs the servers your
+      site connects through, not anyone. That's precisely why nobody can take your
+      site from you — and it means if your computer's disk dies and you haven't
+      written the key down, no one on earth can get your address back.</p>
+      <p style="margin-top:.75rem"><strong>So write it on paper.</strong> It takes a
+      minute, the settings page shows you exactly what to copy, and it's the same
+      trade as a house key: nobody can let themselves in, and nobody can let you
+      back in either.</p>
+    </div>
+
+    <div class="grid" style="margin-top:1.5rem">
+      <div class="panel">
+        <h3>Your home internet has to be up</h3>
+        <p>Your site lives on your computer. If the power goes off or your
+        broadband drops, your site is down until it comes back. That's fine for a
+        personal site and wrong for a shop.</p>
+      </div>
+      <div class="panel">
+        <h3>The free address is ugly</h3>
+        <p>It has to be, because it's calculated from your key rather than chosen.
+        That's the trade that removes the central register. Point your own domain
+        at it and nobody ever sees the long one.</p>
+      </div>
+      <div class="panel">
+        <h3>You're trusting the software</h3>
+        <p>It runs on your machine. So it's kept small enough to actually read, and
+        the source is published — including an honest account of what still has to
+        be trusted.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>What actually happens</h2>
+    <ol class="steps">
+      <li><strong>You run one command.</strong><span>It sets up two sealed containers and creates a key that only your computer will ever hold. It asks you nothing.</span></li>
+      <li><strong>Your computer dials out.</strong><span>It finds a gateway, learns where the entry points are, and opens one outgoing connection to each. Nothing is opened up on your end.</span></li>
+      <li><strong>You get an address and a certificate.</strong><span>The padlock in the browser is real, and its secret half never leaves your machine.</span></li>
+      <li><strong>You put your website in.</strong><span>Drag a zip of your site into the settings page on your home network. Add your own domain if you have one.</span></li>
+      <li><strong>You write the recovery key on paper.</strong><span>Please do this one.</span></li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="panel">
+      <h3>Reading the source gives an attacker nothing</h3>
+      <p>There is no shared secret anywhere in this system — no API key, no common
+      signing key, no hidden credential. Every value that matters is created
+      locally by the machine that uses it. Publishing the source reveals how it
+      works and nothing else, which is the only honest basis for asking you to run
+      something on your own computer.</p>
+      <p style="margin-top:1rem">
+        <a href="https://github.com/lightmorphic/meshmorphic">Source on GitHub</a> ·
+        <a href="https://github.com/lightmorphic/meshmorphic/blob/main/docs/ARCHITECTURE.md">How it works</a> ·
+        <a href="https://github.com/lightmorphic/meshmorphic/blob/main/SECURITY.md">Threat model</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <span>MeshMorphic — by <a href="https://lightmorphic.co.uk">Lightmorphic</a></span>
+    <span>
+      <a href="https://github.com/lightmorphic/meshmorphic">GitHub</a> ·
+      <a href="https://github.com/lightmorphic/meshmorphic/blob/main/LICENSE">Licence</a> ·
+      <a href="mailto:security@lightmorphic.co.uk">Report a vulnerability</a>
+    </span>
+  </div>
+  <div class="wrap" style="margin-top:1rem">
+    <span>This page loads nothing from anywhere else. No trackers, no cookies, no fonts fetched from a third party.</span>
+  </div>
+</footer>
+
+</body>
+</html>

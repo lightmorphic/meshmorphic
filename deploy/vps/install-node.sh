@@ -25,7 +25,7 @@ SSH_PORT="22"
 SKIP_HARDEN="no"
 REPO="https://github.com/lightmorphic/meshmorphic.git"
 BRANCH="main"
-GO_VERSION="1.23.4"
+GO_VERSION="1.25.13"
 
 say()  { printf '\n\033[1;36m==>\033[0m %s\n' "$*"; }
 warn() { printf '\033[1;33m !\033[0m %s\n' "$*"; }
