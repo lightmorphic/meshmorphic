@@ -16,8 +16,12 @@ set -eu
 # The default entry point into the network. This is an address and the public
 # key expected to answer at it; the key is what makes the address safe to
 # publish, since your computer refuses to talk to anything else pretending to
-# be it. Neither value is a secret.
-DEFAULT_GATEWAY="${MM_GATEWAY:-}"
+# be it. Neither value is a secret, and neither is a credential — a gateway
+# grants nothing, so knowing this gets an attacker precisely nowhere.
+#
+# Your computer learns about further gateways from this one and remembers them,
+# so this is a starting point rather than a dependency.
+DEFAULT_GATEWAY="${MM_GATEWAY:-mm01.awwe.uk:7777|PVXV2hi0fcBRKW6wKqRfUthfyzCy9Z4O3K/gousMoa0=}"
 
 INSTALL_DIR="${MM_DIR:-/opt/meshmorphic}"
 IMAGE="${MM_IMAGE:-ghcr.io/lightmorphic/meshmorphic:latest}"
