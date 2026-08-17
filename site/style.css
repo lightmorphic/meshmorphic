@@ -67,6 +67,39 @@ a:hover { text-decoration-thickness: 2px; }
   outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px;
 }
 
+/* ---- development status banner ----
+   Sits above everything, in the warning colour, and does not scroll away
+   behind anything clever. The point is that nobody can miss it. */
+
+.status-banner {
+  background: var(--warning-bg);
+  border-bottom: 1px solid rgba(143, 108, 3, .25);
+  padding: .875rem 0;
+  font-size: .9375rem;
+}
+.status-banner .wrap { display: flex; gap: .5rem 1rem; flex-wrap: wrap; align-items: baseline; }
+.status-banner strong { color: var(--warning); }
+.status-banner span { color: var(--fg); }
+.status-banner a { color: var(--warning); font-weight: 600; }
+
+.hero-status {
+  border-left: 3px solid var(--warning);
+  padding-left: 1rem;
+  margin: 0 0 1.5rem;
+  color: var(--muted-fg);
+}
+.hero-status strong { color: var(--fg); }
+
+.cta {
+  display: inline-block; font-weight: 700; text-decoration: none;
+  padding: .75rem 1.25rem; border-radius: var(--radius);
+  background: var(--accent); color: var(--on-accent);
+}
+.cta:hover { background: var(--accent-hover); text-decoration: none; }
+
+#testers ul { color: var(--muted-fg); padding-left: 1.25rem; }
+#testers li { margin-bottom: .25rem; }
+
 /* ---- masthead ---- */
 
 header.top { padding: 1.5rem 0; }

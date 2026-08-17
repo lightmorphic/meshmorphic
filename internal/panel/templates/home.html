@@ -4,6 +4,12 @@
 <h1>Your website</h1>
 <p class="lede">This is the control panel for the website running on this computer.</p>
 
+<div class="notice warn" role="status">
+  ! <strong>MeshMorphic is still in development.</strong> It works, but it is new and
+  lightly tested — please don't put anything here you would mind losing. If something
+  breaks or confuses you, that is worth reporting: hello@lightmorphic.co.uk
+</div>
+
 {{if .Pending}}
 <div class="notice warn" role="alert">
   ! {{len .Pending}} device{{if ne (len .Pending) 1}}s are{{else}} is{{end}} waiting to be allowed in.

@@ -45,6 +45,11 @@ jobs:
         with:
           files: dist/*
           generate_release_notes: true
+          # Everything below 1.0 is marked a pre-release automatically. This
+          # project asks people to run it on a machine in their house, so the
+          # release page should not imply more confidence than is warranted,
+          # and that should not depend on anyone remembering to tick a box.
+          prerelease: ${{ !startsWith(github.ref_name, 'v1.') && !startsWith(github.ref_name, 'v2.') }}
           body: |
             Verify a download against the published checksums:
 

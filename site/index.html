@@ -14,6 +14,17 @@
 </head>
 <body>
 
+<!-- Development status. Deliberately the first thing on the page, above the
+     name and the pitch, and impossible to scroll past. Somebody arriving here
+     should know what they are looking at before they know what it does. -->
+<div class="status-banner" role="status">
+  <div class="wrap">
+    <strong>In development — please don't rely on this yet.</strong>
+    <span>MeshMorphic works, but it is new and barely tested outside its author's own machines.
+    Don't put anything on it you would mind losing. <a href="#testers">Testers are very welcome</a>.</span>
+  </div>
+</div>
+
 <header class="top">
   <div class="wrap">
     <a class="brand" href="/">
@@ -26,6 +37,7 @@
       MeshMorphic
     </a>
     <nav>
+      <a href="#testers">Testing</a>
       <a href="#how">How it works</a>
       <a href="#servers">Run a server</a>
       <a href="#honest">The catch</a>
@@ -46,16 +58,12 @@
       outward, the same as a web browser does, and your site travels back down it.
     </p>
 
-    <div class="install">
-      <p class="install-label">Install</p>
-      <div class="cmd"><span class="prompt">$</span><code>curl -fsSL https://mm.lightmorphic.co.uk/install.sh | sudo sh</code></div>
-      <p class="note">
-        It asks you nothing — no account, no password, no email address. A minute
-        later it prints your web address and a link to your settings page.
-        <a href="/install.sh">Read the script first</a> if you'd rather; it's the
-        same file that's <a href="https://github.com/lightmorphic/meshmorphic/blob/main/install.sh">in the repository</a>.
-      </p>
-    </div>
+    <p class="hero-status">
+      <strong>This is not finished.</strong> It is being built in the open, it has
+      one real deployment behind it, and it should not be carrying anything you
+      care about. What it needs right now is people willing to break it.
+    </p>
+    <p><a class="cta" href="#testers">Read this if you'd like to test it →</a></p>
   </div>
 </div>
 
@@ -232,6 +240,68 @@
       <li><strong>You put your website in.</strong><span>Drag a zip of your site into the settings page on your home network. Add your own domain if you have one.</span></li>
       <li><strong>You write the recovery key on paper.</strong><span>Please do this one.</span></li>
     </ol>
+  </div>
+</section>
+
+<section id="testers">
+  <div class="wrap">
+    <h2>Testers wanted</h2>
+    <p class="section-lede">
+      This is the stage where the useful thing to be is sceptical.
+    </p>
+
+    <div class="callout warn">
+      <h3>! Please read this before installing anything</h3>
+      <p>MeshMorphic is early software. It works — there is a real deployment
+      serving real pages over real certificates — but it has been running for
+      days rather than years, and almost everything it has survived so far was
+      survived on purpose rather than by accident.</p>
+      <p style="margin-top:.75rem"><strong>So: nothing you would mind losing.</strong>
+      Not the family photos, not the business site, not the only copy of
+      anything. A spare machine and a throwaway page is exactly right.</p>
+    </div>
+
+    <div class="grid-2" style="margin-top:1.5rem">
+      <div class="panel">
+        <h3>What would help most</h3>
+        <p>Anything that breaks. In particular:</p>
+        <ul>
+          <li>A home connection whose IP address changes</li>
+          <li>Routers, ISPs and firewalls that do odd things to UDP</li>
+          <li>A certificate reaching its renewal</li>
+          <li>Power cuts, unplugged cables, machines that sleep</li>
+          <li>Anything in the setup that confused you, even slightly</li>
+        </ul>
+        <p>That last one is not politeness. This exists for people who find
+        self-hosting frightening, so a moment of confusion is a real defect.</p>
+      </div>
+      <div class="panel">
+        <h3>How to report something</h3>
+        <p>Open an issue on
+        <a href="https://github.com/lightmorphic/meshmorphic/issues">GitHub</a>,
+        or email <a href="mailto:hello@lightmorphic.co.uk">hello@lightmorphic.co.uk</a>
+        if that's easier. You don't need to diagnose it — "it stopped working and
+        I don't know why" is a perfectly good report.</p>
+        <p>For anything security-related, please use
+        <a href="mailto:security@lightmorphic.co.uk">security@lightmorphic.co.uk</a>
+        rather than a public issue, and see the
+        <a href="https://github.com/lightmorphic/meshmorphic/blob/main/SECURITY.md">threat model</a>
+        first — it already lists what is known to be weak.</p>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top:1.25rem">
+      <h3>If you've read all that and still want to try it</h3>
+      <div class="cmd"><span class="prompt">$</span><code>curl -fsSL https://mm.lightmorphic.co.uk/install.sh | sudo sh</code></div>
+      <p class="note">
+        Needs a machine running Linux that stays switched on. It asks you nothing
+        and changes nothing on your router.
+        <a href="/install.sh">Read the script first</a> — it's the same file that's
+        <a href="https://github.com/lightmorphic/meshmorphic/blob/main/install.sh">in the repository</a>,
+        and reading things before piping them into a shell is a good habit this
+        project would rather encourage than discourage.
+      </p>
+    </div>
   </div>
 </section>
 

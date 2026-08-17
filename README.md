@@ -1,5 +1,18 @@
 # MeshMorphic
 
+> ### ⚠️ In development — please don't rely on this yet
+>
+> MeshMorphic works. There is a live network serving real pages over real
+> certificates. But it is new, it has been running for days rather than years,
+> and nearly everything it has survived so far was survived deliberately rather
+> than by accident.
+>
+> **Don't put anything on it you would mind losing.** Not a business site, not
+> the family photos, not the only copy of anything.
+>
+> **What it needs right now is testers** — see [Testing](#testing) below. If you
+> like breaking things, you are exactly who this needs.
+
 **A website on your own computer, with nothing open to the internet.**
 
 Self-hosting a website at home normally means opening a door in your home
@@ -14,14 +27,49 @@ and anyone could fork it and carry on.
 
 ---
 
-## Install
+## Testing
+
+This is the stage where being sceptical is the useful thing to be.
+
+**Use a spare machine and a throwaway page.** Nothing you would mind losing.
 
 ```bash
 curl -fsSL https://mm.lightmorphic.co.uk/install.sh | sudo sh
 ```
 
-It asks you nothing. A minute later it prints your web address and a link to
-your settings page. That's the whole setup.
+Needs a Linux machine that stays switched on. It asks you nothing, and changes
+nothing on your router. A minute later it prints your web address and a link to
+your settings page.
+
+### What would help most
+
+Anything that breaks. Particularly:
+
+- A home connection whose IP address changes while a site is running
+- Routers, ISPs or firewalls that treat UDP oddly
+- A certificate reaching its 60-day renewal
+- Power cuts, pulled cables, machines that go to sleep
+- **Anything in the setup that confused you, even slightly**
+
+That last one isn't politeness. This exists for people who find self-hosting
+frightening, so a moment of confusion is a real defect, not a user error.
+
+### Reporting
+
+Open an [issue](https://github.com/lightmorphic/meshmorphic/issues), or email
+<hello@lightmorphic.co.uk> if that's easier. You don't need to diagnose
+anything — "it stopped working and I don't know why" is a good report.
+
+For anything security-related, use <security@lightmorphic.co.uk> rather than a
+public issue, and see [SECURITY.md](SECURITY.md) first: it already lists what's
+known to be weak, so you needn't spend time confirming it.
+
+### Known limits today
+
+- **One entry point.** If it goes down, sites go dark. Gateways are redundant;
+  traffic-carrying nodes are not yet.
+- **Static sites only.** WordPress and friends are Phase 2.
+- **Barely any field testing.** One author, two servers, days of uptime.
 
 ---
 
@@ -193,11 +241,17 @@ computer.
 
 ## Status
 
-Phase 1: static websites. Working end to end.
+**Phase 1, in development.** Static websites, working end to end on a live
+network — but early, and not to be relied on. See the warning at the top, and
+[Testing](#testing) if you'd like to help.
 
-Phase 2 will add presets for WordPress and similar. Phase 3 adds direct
+Releases below `1.0` are marked pre-release, and will stay that way until there
+is enough field evidence to justify otherwise. That evidence is what testers
+provide.
+
+Phase 2 adds presets for WordPress and similar. Phase 3 adds direct
 peer-to-peer paths and split recovery material. The protocol was built
-mesh-shaped from the first commit so neither is a rewrite.
+mesh-shaped from the first commit, so neither is a rewrite.
 
 ## Licence
 
