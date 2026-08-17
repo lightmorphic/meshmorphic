@@ -35,7 +35,7 @@ scan, or brute-force.
 key that only your computer holds:
 
 ```
-qz3k9rf7dnxb2wp8sq4t.awwe.uk
+qz3k9rf7dnxb2wp8sq4t.awwwe.uk
 └──────────────────┘
    derived from your public key
 ```

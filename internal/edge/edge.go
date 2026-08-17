@@ -51,7 +51,7 @@ type Config struct {
 	// home server rather than here.
 	HTTPListen string
 	// MeshDomains are the suffixes whose labels are key-derived and therefore
-	// self-authorising, for example "awwe.uk". More than one is supported so
+	// self-authorising, for example "awwwe.uk". More than one is supported so
 	// the network can add domains over time, and so a domain can be retired
 	// without stranding the peers using it.
 	MeshDomains []string

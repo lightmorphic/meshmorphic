@@ -21,7 +21,7 @@ set -eu
 #
 # Your computer learns about further gateways from this one and remembers them,
 # so this is a starting point rather than a dependency.
-DEFAULT_GATEWAY="${MM_GATEWAY:-mm01.awwe.uk:7777|PVXV2hi0fcBRKW6wKqRfUthfyzCy9Z4O3K/gousMoa0=}"
+DEFAULT_GATEWAY="${MM_GATEWAY:-mm01.awwwe.uk:7777|PVXV2hi0fcBRKW6wKqRfUthfyzCy9Z4O3K/gousMoa0=}"
 
 INSTALL_DIR="${MM_DIR:-/opt/meshmorphic}"
 IMAGE="${MM_IMAGE:-ghcr.io/lightmorphic/meshmorphic:latest}"

@@ -104,7 +104,7 @@ agent's list down to gateways it controls.
 The agent authenticates as above, then sends:
 
 ```json
-{"type":"claim","hostnames":["qz3k9rf7dnxb2wp8sq4t.awwe.uk","example.com"]}
+{"type":"claim","hostnames":["qz3k9rf7dnxb2wp8sq4t.awwwe.uk","example.com"]}
 ```
 
 No credential accompanies it, because there is no issuer. The edge decides per
@@ -129,7 +129,7 @@ When a visitor connects, the edge opens a new stream to the agent, writes one
 control frame, and then stops interpreting anything:
 
 ```json
-{"type":"open","proto":"tls","host":"qz3k9rf7dnxb2wp8sq4t.awwe.uk",
+{"type":"open","proto":"tls","host":"qz3k9rf7dnxb2wp8sq4t.awwwe.uk",
  "remote":"198.51.100.7:51234"}
 ```
 

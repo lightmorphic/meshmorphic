@@ -26,7 +26,7 @@ import (
 	"github.com/lightmorphic/meshmorphic/internal/transport"
 )
 
-const meshDomain = "awwe.test"
+const meshDomain = "awwwe.test"
 
 // quietLogger keeps a passing run readable; failures print what happened via
 // the assertions rather than the log.
@@ -245,7 +245,7 @@ func TestUnknownHostnameIsRefusedAtTheEdge(t *testing.T) {
 		t.Error("a request for an unrouted hostname reached the agent")
 	}))
 
-	resp, _ := n.get(t, "nobody-here.awwe.test", "/")
+	resp, _ := n.get(t, "nobody-here.awwwe.test", "/")
 	if resp.StatusCode != http.StatusBadGateway {
 		t.Fatalf("expected 502 for an unknown hostname, got %d", resp.StatusCode)
 	}
@@ -349,14 +349,14 @@ func discoverEdges(t *testing.T, n *network, id *identity.Identity) []proto.Edge
 func TestCustomDomainIsServed(t *testing.T) {
 	n := startNetwork(t, http.NotFoundHandler())
 
-	if err := n.agent.AddHostname("example.awwe-custom.test"); err != nil {
+	if err := n.agent.AddHostname("example.awwwe-custom.test"); err != nil {
 		t.Fatalf("AddHostname: %v", err)
 	}
 
 	// The claim is re-sent on the control tick rather than immediately.
 	deadline := time.Now().Add(40 * time.Second)
 	for time.Now().Before(deadline) {
-		resp, _ := n.get(t, "example.awwe-custom.test", "/")
+		resp, _ := n.get(t, "example.awwwe-custom.test", "/")
 		if resp.StatusCode == http.StatusMovedPermanently {
 			return
 		}

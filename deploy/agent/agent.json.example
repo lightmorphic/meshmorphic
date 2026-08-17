@@ -4,7 +4,7 @@
   "_gateways": "Introduction points. Each is an address and the public key expected to answer there — an address alone is never enough, because dialling somewhere without knowing which key should answer is exactly what this system refuses to do. Any one working gateway is sufficient; more is better, and the agent learns about others as it goes.",
   "gateways": [
     {
-      "addr": "gw1.awwe.uk:7777",
+      "addr": "gw1.awwwe.uk:7777",
       "pubkey": "REPLACE_WITH_GATEWAY_PUBLIC_KEY"
     }
   ],

@@ -13,10 +13,10 @@ everything the website does travels back down that connection.
 
 ```
                      ordinary DNS
-  visitor's         *.awwe.uk ──> an edge's IP
+  visitor's         *.awwwe.uk ──> an edge's IP
   browser                              │
      │                                 │
-     │ 1. TLS to qz3k9rf7dnxb2wp8sq4t.awwe.uk:443
+     │ 1. TLS to qz3k9rf7dnxb2wp8sq4t.awwwe.uk:443
      ▼                                 ▼
   ┌──────────────────────────────────────────────────┐
   │  EDGE  (public VPS, static IP)                   │

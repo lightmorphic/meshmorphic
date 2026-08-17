@@ -6,10 +6,10 @@
 # close to free — it holds nothing, stores nothing, and carries no traffic — so
 # the network gets more resilient every time somebody runs this on a spare box.
 #
-#   bash install-node.sh --role gateway --domains awwe.uk --public-host gw2.awwe.uk
-#   bash install-node.sh --role edge    --domains awwe.uk --public-host edge2.awwe.uk \
-#                        --gateways "gw1.awwe.uk:7777|BASE64KEY"
-#   bash install-node.sh --role both    --domains awwe.uk --public-host mesh1.awwe.uk
+#   bash install-node.sh --role gateway --domains awwwe.uk --public-host gw2.awwwe.uk
+#   bash install-node.sh --role edge    --domains awwwe.uk --public-host edge2.awwwe.uk \
+#                        --gateways "gw1.awwwe.uk:7777|BASE64KEY"
+#   bash install-node.sh --role both    --domains awwwe.uk --public-host mesh1.awwwe.uk
 #
 # There is nothing secret to supply. No account, no token, no registration.
 # The node generates its own key on first start and tells you what to publish.
@@ -17,7 +17,7 @@
 set -euo pipefail
 
 ROLE="both"
-DOMAINS="awwe.uk"
+DOMAINS="awwwe.uk"
 PUBLIC_HOST=""
 GATEWAYS=""
 SEEDS=""
@@ -37,7 +37,7 @@ usage() {
 
 Options:
   --role gateway|edge|both   what this server should run (default: both)
-  --domains a.uk,b.uk        mesh domains this node serves (default: awwe.uk)
+  --domains a.uk,b.uk        mesh domains this node serves (default: awwwe.uk)
   --public-host NAME         the DNS name others reach this server on
   --gateways "addr|key,..."  gateways an edge announces itself to
   --seeds "addr|key,..."     other gateways to tell agents about

@@ -31,7 +31,7 @@ import (
 func main() {
 	var (
 		listen       = flag.String("listen", ":7777", "UDP address for the QUIC introduction service")
-		domains      = flag.String("domains", "awwe.uk", "comma-separated DNS suffixes this network hands out")
+		domains      = flag.String("domains", "awwwe.uk", "comma-separated DNS suffixes this network hands out")
 		stateDir     = flag.String("state", "/var/lib/meshmorphic-gateway", "directory holding this gateway's identity")
 		seeds        = flag.String("seeds", "", "other gateways to tell agents about: host:port|pubkey,...")
 		statusListen = flag.String("status", "127.0.0.1:9440", "local address for the status endpoint, empty to disable")

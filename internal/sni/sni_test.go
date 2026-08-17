@@ -33,7 +33,7 @@ func clientHelloFor(t *testing.T, serverName string, conf func(*tls.Config)) (st
 }
 
 func TestPeekFindsServerName(t *testing.T) {
-	const want = "qz3k9rf7dnxb2wp8sq4t.awwe.uk"
+	const want = "qz3k9rf7dnxb2wp8sq4t.awwwe.uk"
 
 	got, consumed, err := clientHelloFor(t, want, nil)
 	if err != nil {
@@ -54,7 +54,7 @@ func TestPeekFindsServerName(t *testing.T) {
 // them to the home server. Anything lost or reordered here breaks the
 // handshake in a way that would be maddening to diagnose.
 func TestPeekReplayIsTheCompleteClientHello(t *testing.T) {
-	_, consumed, err := clientHelloFor(t, "example.awwe.uk", nil)
+	_, consumed, err := clientHelloFor(t, "example.awwwe.uk", nil)
 	if err != nil {
 		t.Fatalf("Peek: %v", err)
 	}
@@ -72,7 +72,7 @@ func TestPeekReplayIsTheCompleteClientHello(t *testing.T) {
 func TestPeekHandlesLongNamesAndALPN(t *testing.T) {
 	// A browser sends a long ALPN list and several extensions, which pushes
 	// server_name away from the start of the extension block.
-	want := strings.Repeat("a", 60) + ".awwe.uk"
+	want := strings.Repeat("a", 60) + ".awwwe.uk"
 	got, _, err := clientHelloFor(t, want, func(c *tls.Config) {
 		c.NextProtos = []string{"h2", "http/1.1", "acme-tls/1"}
 	})

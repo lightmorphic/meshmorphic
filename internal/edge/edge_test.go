@@ -19,7 +19,7 @@ func testEdge(t *testing.T, allowCustom bool) *Server {
 		TunnelListen:       "127.0.0.1:0",
 		HTTPSListen:        "127.0.0.1:0",
 		HTTPListen:         "127.0.0.1:0",
-		MeshDomains:        []string{"awwe.uk", "mm.example.net"},
+		MeshDomains:        []string{"awwwe.uk", "mm.example.net"},
 		AllowCustomDomains: allowCustom,
 		Identity:           id,
 		Logger:             slog.New(slog.NewTextHandler(discard{}, nil)),
@@ -46,7 +46,7 @@ func TestAuthorizeMeshHostnameRequiresMatchingKey(t *testing.T) {
 	srv := testEdge(t, false)
 	tun, id := testTunnel(t)
 
-	own := identity.HostLabel(id.PublicKey) + ".awwe.uk"
+	own := identity.HostLabel(id.PublicKey) + ".awwwe.uk"
 	if err := srv.authorize(tun, own); err != nil {
 		t.Fatalf("a peer was refused its own derived hostname: %v", err)
 	}
@@ -58,7 +58,7 @@ func TestAuthorizeMeshHostnameRequiresMatchingKey(t *testing.T) {
 
 	// Somebody else's label must be refused.
 	other, _ := identity.Generate()
-	stolen := identity.HostLabel(other.PublicKey) + ".awwe.uk"
+	stolen := identity.HostLabel(other.PublicKey) + ".awwwe.uk"
 	if err := srv.authorize(tun, stolen); err == nil {
 		t.Fatal("a peer was allowed to claim another peer's mesh hostname")
 	}
@@ -70,11 +70,11 @@ func TestAuthorizeRejectsMalformedMeshLabels(t *testing.T) {
 	label := identity.HostLabel(id.PublicKey)
 
 	for _, host := range []string{
-		"anything.awwe.uk",
-		strings.ToUpper(label) + "x.awwe.uk",
-		label + "x.awwe.uk",
-		"sub." + label + ".awwe.uk", // extra label: not a single-label mesh name
-		label[:len(label)-1] + ".awwe.uk",
+		"anything.awwwe.uk",
+		strings.ToUpper(label) + "x.awwwe.uk",
+		label + "x.awwwe.uk",
+		"sub." + label + ".awwwe.uk", // extra label: not a single-label mesh name
+		label[:len(label)-1] + ".awwwe.uk",
 	} {
 		if err := srv.authorize(tun, host); err == nil {
 			t.Fatalf("edge accepted the invalid mesh hostname %q", host)
@@ -119,7 +119,7 @@ func TestWithdrawOnlyRemovesOwnRoutes(t *testing.T) {
 	srv := testEdge(t, true)
 	old, id := testTunnel(t)
 
-	host := identity.HostLabel(id.PublicKey) + ".awwe.uk"
+	host := identity.HostLabel(id.PublicKey) + ".awwwe.uk"
 	if accepted, _ := srv.claim(old, []string{host}); len(accepted) != 1 {
 		t.Fatal("initial claim failed")
 	}
