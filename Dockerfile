@@ -6,7 +6,7 @@
 # libc — an attacker who found a way to run something inside this container
 # would find nothing to run.
 
-FROM golang:1.25-alpine AS build
+FROM golang:1.25.13-alpine AS build
 
 WORKDIR /src
 

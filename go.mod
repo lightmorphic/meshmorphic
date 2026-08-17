@@ -2,6 +2,8 @@ module github.com/lightmorphic/meshmorphic
 
 go 1.25.0
 
+toolchain go1.25.13
+
 require (
 	github.com/quic-go/quic-go v0.61.0
 	golang.org/x/crypto v0.55.0
