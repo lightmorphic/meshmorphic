@@ -25,9 +25,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/FOSSCharlie/meshmorphic/internal/identity"
-	"github.com/FOSSCharlie/meshmorphic/internal/recovery"
-	"github.com/FOSSCharlie/meshmorphic/internal/version"
+	"github.com/lightmorphic/meshmorphic/internal/identity"
+	"github.com/lightmorphic/meshmorphic/internal/recovery"
+	"github.com/lightmorphic/meshmorphic/internal/version"
 )
 
 //go:embed assets templates

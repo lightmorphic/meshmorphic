@@ -18,12 +18,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/FOSSCharlie/meshmorphic/internal/agent"
-	"github.com/FOSSCharlie/meshmorphic/internal/edge"
-	"github.com/FOSSCharlie/meshmorphic/internal/gateway"
-	"github.com/FOSSCharlie/meshmorphic/internal/identity"
-	"github.com/FOSSCharlie/meshmorphic/internal/proto"
-	"github.com/FOSSCharlie/meshmorphic/internal/transport"
+	"github.com/lightmorphic/meshmorphic/internal/agent"
+	"github.com/lightmorphic/meshmorphic/internal/edge"
+	"github.com/lightmorphic/meshmorphic/internal/gateway"
+	"github.com/lightmorphic/meshmorphic/internal/identity"
+	"github.com/lightmorphic/meshmorphic/internal/proto"
+	"github.com/lightmorphic/meshmorphic/internal/transport"
 )
 
 const meshDomain = "awwe.test"

@@ -1,4 +1,4 @@
-module github.com/FOSSCharlie/meshmorphic
+module github.com/lightmorphic/meshmorphic
 
 go 1.23
 

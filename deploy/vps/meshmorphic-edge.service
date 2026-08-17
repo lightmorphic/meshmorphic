@@ -1,6 +1,6 @@
 [Unit]
 Description=MeshMorphic edge (ingress node)
-Documentation=https://github.com/FOSSCharlie/meshmorphic
+Documentation=https://github.com/lightmorphic/meshmorphic
 After=network-online.target
 Wants=network-online.target
 

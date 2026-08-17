@@ -34,10 +34,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/FOSSCharlie/meshmorphic/internal/identity"
-	"github.com/FOSSCharlie/meshmorphic/internal/proto"
-	"github.com/FOSSCharlie/meshmorphic/internal/sni"
-	"github.com/FOSSCharlie/meshmorphic/internal/transport"
+	"github.com/lightmorphic/meshmorphic/internal/identity"
+	"github.com/lightmorphic/meshmorphic/internal/proto"
+	"github.com/lightmorphic/meshmorphic/internal/sni"
+	"github.com/lightmorphic/meshmorphic/internal/transport"
 )
 
 // Config configures an edge.

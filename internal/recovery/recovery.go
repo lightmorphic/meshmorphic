@@ -25,7 +25,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/FOSSCharlie/meshmorphic/internal/identity"
+	"github.com/lightmorphic/meshmorphic/internal/identity"
 )
 
 // Prefix marks a MeshMorphic recovery key and its version.

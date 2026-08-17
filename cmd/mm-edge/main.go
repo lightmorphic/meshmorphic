@@ -18,10 +18,10 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/FOSSCharlie/meshmorphic/internal/cli"
-	"github.com/FOSSCharlie/meshmorphic/internal/edge"
-	"github.com/FOSSCharlie/meshmorphic/internal/identity"
-	"github.com/FOSSCharlie/meshmorphic/internal/version"
+	"github.com/lightmorphic/meshmorphic/internal/cli"
+	"github.com/lightmorphic/meshmorphic/internal/edge"
+	"github.com/lightmorphic/meshmorphic/internal/identity"
+	"github.com/lightmorphic/meshmorphic/internal/version"
 )
 
 func main() {

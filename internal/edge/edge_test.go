@@ -5,8 +5,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/FOSSCharlie/meshmorphic/internal/identity"
-	"github.com/FOSSCharlie/meshmorphic/internal/transport"
+	"github.com/lightmorphic/meshmorphic/internal/identity"
+	"github.com/lightmorphic/meshmorphic/internal/transport"
 )
 
 func testEdge(t *testing.T, allowCustom bool) *Server {

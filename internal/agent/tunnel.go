@@ -9,10 +9,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/FOSSCharlie/meshmorphic/internal/identity"
-	"github.com/FOSSCharlie/meshmorphic/internal/proto"
-	"github.com/FOSSCharlie/meshmorphic/internal/transport"
-	"github.com/FOSSCharlie/meshmorphic/internal/version"
+	"github.com/lightmorphic/meshmorphic/internal/identity"
+	"github.com/lightmorphic/meshmorphic/internal/proto"
+	"github.com/lightmorphic/meshmorphic/internal/transport"
+	"github.com/lightmorphic/meshmorphic/internal/version"
 )
 
 // superviseEdge keeps one edge tunnel alive until its context is cancelled.

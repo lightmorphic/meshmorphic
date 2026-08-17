@@ -21,11 +21,11 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/FOSSCharlie/meshmorphic/internal/cli"
-	"github.com/FOSSCharlie/meshmorphic/internal/gateway"
-	"github.com/FOSSCharlie/meshmorphic/internal/identity"
-	"github.com/FOSSCharlie/meshmorphic/internal/proto"
-	"github.com/FOSSCharlie/meshmorphic/internal/version"
+	"github.com/lightmorphic/meshmorphic/internal/cli"
+	"github.com/lightmorphic/meshmorphic/internal/gateway"
+	"github.com/lightmorphic/meshmorphic/internal/identity"
+	"github.com/lightmorphic/meshmorphic/internal/proto"
+	"github.com/lightmorphic/meshmorphic/internal/version"
 )
 
 func main() {

@@ -6,9 +6,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/FOSSCharlie/meshmorphic/internal/proto"
-	"github.com/FOSSCharlie/meshmorphic/internal/transport"
-	"github.com/FOSSCharlie/meshmorphic/internal/version"
+	"github.com/lightmorphic/meshmorphic/internal/proto"
+	"github.com/lightmorphic/meshmorphic/internal/transport"
+	"github.com/lightmorphic/meshmorphic/internal/version"
 )
 
 // GatewayTarget is a gateway this edge announces itself to.

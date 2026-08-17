@@ -17,7 +17,7 @@ and anyone could fork it and carry on.
 ## Install
 
 ```bash
-curl -fsSL https://get.awwe.uk | sudo sh
+curl -fsSL https://mm.lightmorphic.co.uk/install.sh | sudo sh
 ```
 
 It asks you nothing. A minute later it prints your web address and a link to
@@ -99,7 +99,7 @@ storage, negligible traffic, no responsibility for anyone's data, and nothing
 on the machine worth attacking.
 
 ```bash
-git clone https://github.com/FOSSCharlie/meshmorphic
+git clone https://github.com/lightmorphic/meshmorphic
 cd meshmorphic/deploy/vps
 sudo bash install-node.sh --role gateway --public-host gw2.example.org
 ```

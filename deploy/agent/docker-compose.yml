@@ -30,7 +30,7 @@ volumes:
 
 services:
   agent:
-    image: ghcr.io/fosscharlie/meshmorphic:latest
+    image: ghcr.io/lightmorphic/meshmorphic:latest
     container_name: meshmorphic-agent
     restart: unless-stopped
     networks: [mesh, site]

@@ -18,12 +18,12 @@ import (
 	"strings"
 	"syscall"
 
-	"github.com/FOSSCharlie/meshmorphic/internal/agent"
-	"github.com/FOSSCharlie/meshmorphic/internal/cli"
-	"github.com/FOSSCharlie/meshmorphic/internal/identity"
-	"github.com/FOSSCharlie/meshmorphic/internal/panel"
-	"github.com/FOSSCharlie/meshmorphic/internal/recovery"
-	"github.com/FOSSCharlie/meshmorphic/internal/version"
+	"github.com/lightmorphic/meshmorphic/internal/agent"
+	"github.com/lightmorphic/meshmorphic/internal/cli"
+	"github.com/lightmorphic/meshmorphic/internal/identity"
+	"github.com/lightmorphic/meshmorphic/internal/panel"
+	"github.com/lightmorphic/meshmorphic/internal/recovery"
+	"github.com/lightmorphic/meshmorphic/internal/version"
 )
 
 const usage = `MeshMorphic agent ` + version.Version + `

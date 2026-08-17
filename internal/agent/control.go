@@ -6,8 +6,8 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/FOSSCharlie/meshmorphic/internal/identity"
-	"github.com/FOSSCharlie/meshmorphic/internal/names"
+	"github.com/lightmorphic/meshmorphic/internal/identity"
+	"github.com/lightmorphic/meshmorphic/internal/names"
 )
 
 // This file is the surface the settings panel drives the agent through. It is

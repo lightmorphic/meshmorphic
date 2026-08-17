@@ -2,7 +2,7 @@
 #
 # MeshMorphic — put a website on your own computer, safely.
 #
-#   curl -fsSL https://get.awwe.uk | sh
+#   curl -fsSL https://mm.lightmorphic.co.uk/install.sh | sh
 #
 # This asks you nothing. It sets up two sealed containers, generates a key that
 # only this computer will ever hold, and tells you the web address of your new
@@ -20,7 +20,7 @@ set -eu
 DEFAULT_GATEWAY="${MM_GATEWAY:-}"
 
 INSTALL_DIR="${MM_DIR:-/opt/meshmorphic}"
-IMAGE="${MM_IMAGE:-ghcr.io/fosscharlie/meshmorphic:latest}"
+IMAGE="${MM_IMAGE:-ghcr.io/lightmorphic/meshmorphic:latest}"
 RECOVERY_KEY=""
 
 # ---------------------------------------------------------------- output -----

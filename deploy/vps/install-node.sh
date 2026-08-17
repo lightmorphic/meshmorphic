@@ -23,7 +23,7 @@ GATEWAYS=""
 SEEDS=""
 SSH_PORT="22"
 SKIP_HARDEN="no"
-REPO="https://github.com/FOSSCharlie/meshmorphic.git"
+REPO="https://github.com/lightmorphic/meshmorphic.git"
 BRANCH="main"
 GO_VERSION="1.23.4"
 

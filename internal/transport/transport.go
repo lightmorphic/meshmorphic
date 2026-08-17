@@ -31,8 +31,8 @@ import (
 
 	"github.com/quic-go/quic-go"
 
-	"github.com/FOSSCharlie/meshmorphic/internal/identity"
-	"github.com/FOSSCharlie/meshmorphic/internal/proto"
+	"github.com/lightmorphic/meshmorphic/internal/identity"
+	"github.com/lightmorphic/meshmorphic/internal/proto"
 )
 
 // AuthDomain separates handshake signatures from every other signature in the

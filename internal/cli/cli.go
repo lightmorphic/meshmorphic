@@ -8,7 +8,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/FOSSCharlie/meshmorphic/internal/identity"
+	"github.com/lightmorphic/meshmorphic/internal/identity"
 )
 
 // Peer is an address paired with the public key expected at it.

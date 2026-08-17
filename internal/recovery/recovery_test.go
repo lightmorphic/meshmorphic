@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/FOSSCharlie/meshmorphic/internal/identity"
+	"github.com/lightmorphic/meshmorphic/internal/identity"
 )
 
 func TestRoundTrip(t *testing.T) {
