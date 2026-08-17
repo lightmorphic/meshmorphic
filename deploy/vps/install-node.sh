@@ -192,10 +192,35 @@ EOF
   sleep 2
 }
 
+# gateway_line prints this machine's own gateway as "addr|pubkey".
+gateway_line() {
+  local key
+  key="$(runuser -u meshmorphic-gw -- /usr/local/bin/mm-gateway \
+           -state /var/lib/meshmorphic-gateway -identity 2>/dev/null \
+         | awk '/pubkey:/ {print $2}')"
+  [ -n "$key" ] && printf '%s:7777|%s' "$PUBLIC_HOST" "$key"
+}
+
 case "$ROLE" in
   gateway) install_gateway ;;
   edge)    install_edge ;;
-  both)    install_gateway; install_edge ;;
+  both)
+    install_gateway
+    # Wire the edge to the gateway that was just installed. Its key did not
+    # exist when this script started, so it cannot have been passed as an
+    # argument — and without this, a --role both install would come up with an
+    # edge no agent is ever told about, which looks like it is working right
+    # up until nothing can reach it.
+    if [ -z "$GATEWAYS" ]; then
+      GATEWAYS="$(gateway_line)"
+      if [ -n "$GATEWAYS" ]; then
+        say "Pointing this edge at the gateway on this same machine"
+      else
+        warn "Could not read the new gateway's key; the edge will not announce."
+      fi
+    fi
+    install_edge
+    ;;
 esac
 
 # ------------------------------------------------------------------ done -----
